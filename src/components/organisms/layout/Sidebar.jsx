@@ -35,9 +35,14 @@ export const Sidebar = memo(() => {
           </div>
         </div>
         <ul className="c-sidebar_list">
-          <li className="c-sidebar_listItem">
-            <NoteCard title={data.title} content={data.content} date={data.date}/>
-          </li>
+          {[...Array(4)].map((_, id)=>{
+            return(
+              <li key={id} className="c-sidebar_listItem">
+                <NoteCard title={data.title} content={data.content} date={data.date}/>
+              </li>
+
+            )
+          })}
         </ul>
       </div>
     </>
