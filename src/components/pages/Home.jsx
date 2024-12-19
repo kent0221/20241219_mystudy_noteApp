@@ -4,9 +4,9 @@
 
 import { memo } from 'react';
 import { HFLayout } from '../templates/HFLayout';
-import { Grid } from '../templates/Grid';
-import { Sidebar } from '../organisms/Sidebar';
-import { Main } from '../organisms/Main';
+import { Grid } from '../organisms/layout/Grid';
+import { Sidebar } from '../organisms/layout/Sidebar';
+import { Main } from '../organisms/layout/Main';
 
 export const Home = memo(() => {
   // props

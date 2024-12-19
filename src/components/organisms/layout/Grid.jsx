@@ -5,6 +5,8 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 
+import './Layout.css';
+
 export const Grid = memo((props) => {
   // props
   const { sidebar, main } = props;

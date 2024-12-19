@@ -1,0 +1,182 @@
+/* Grid.css */
+
+.c-grid {
+  display: flex;
+  height: 85vh; /* 画面の高さにフィット */
+  width: 100vw; /* 画面の幅にフィット */
+  overflow: hidden; /* コンテンツのオーバーフローを隠す */
+}
+
+.c-grid_sidebar {
+  background-color: #f0f4f8; /* 優しい青い背景色 */
+  width: 30%; /* 比率3 */
+  padding: 16px;
+  box-sizing: border-box;
+  border-right: 1px solid #e0e0e0; /* 境界線 */
+}
+
+.c-grid_main {
+  background-color: #ffffff; /* 白背景 */
+  width: 70%; /* 比率7 */
+  box-sizing: border-box;
+}
+
+/* Footer.css */
+
+.c-footer {
+  background-color: #f0f4f8; /* 優しい青い背景色 */
+  color: #333333; /* 濃いめのテキスト色 */
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  position: static;
+  border-top: 1px solid #e0e0e0; /* 境界線 */
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* 軽い影 */
+}
+
+.c-footer_coprtight {
+  font-size: 14px; /* 少し小さめのフォントサイズ */
+}
+
+/* Header.css */
+
+.c-header {
+  background-color: #f0f4f8; /* 優しい青い背景色 */
+  color: #333333; /* 濃いめのテキスト色 */
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  position: static;
+  border-bottom: 1px solid #e0e0e0; /* 境界線 */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* 軽い影 */
+}
+
+.c-header_title h1 {
+  margin: 0;
+  font-size: 24px; /* 見出しのフォントサイズ */
+  font-weight: normal;
+}
+
+/* Main.css */
+
+.c-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.c-main_input {
+  width: 100%;
+  background-color: #f7fbfc; /* 優しい青緑色の背景 */
+  padding: 16px 32px 16px 16px;
+  flex: 4; /* 比率4 */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* インプットフィールド間の余白 */
+  box-sizing: border-box;
+  border-bottom: 1px solid #e0e0e0; /* 境界線 */
+}
+
+.c-main_input input,
+.c-main_input textarea {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.c-main_preview {
+  padding: 16px 32px 16px 16px;
+  flex: 6; /* 比率6 */
+}
+
+.c-main_previewTitle strong {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 8px; /* タイトルと内容の間の余白 */
+}
+
+.c-main_previewContent p {
+  font-size: 16px;
+  line-height: 1.5; /* テキストの読みやすさを向上 */
+}
+
+/* Sidebar.css */
+
+.c-sidebar {
+  /* padding: 16px; */
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden; /* 全体がスクロールしないように設定 */
+}
+
+.c-sidebar_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px; /* タイトルとリストの間の余白を統一 */
+}
+
+.c-hsidebar_headTitle h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.c-sidebar_headButton {
+  display: flex;
+  align-items: center;
+}
+
+.c-sidebar_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto; /* 縦方向にスクロール可能に設定 */
+}
+
+.c-sidebar_listItem {
+  margin-bottom: 8px; /* 各ノートカードの間に余白を */
+}
+
+/* NoteCard.css */
+
+.c-noteCard {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  transition: background-color 0.3s, border-color 0.3s; /* スムーズなトランジション */
+}
+
+.c-noteCard.isActive {
+  background-color: #e0f7fa; /* アクティブなカード背景を優しい水色に */
+  border-color: #00acc1; /* アクティブなカード境界線を少し濃いブルーに */
+}
+
+.c-noteCard_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.c-noteCard_title strong {
+  font-size: 18px;
+}
+
+.c-noteCard_content p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #666666;
+}
+
+.c-noteCard_content small {
+  font-size: 12px;
+  color: #999999;
+}
