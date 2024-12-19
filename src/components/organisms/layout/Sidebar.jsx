@@ -8,21 +8,39 @@ import { memo } from 'react';
 import './Layout.css';
 import { NoteCard } from './NoteCard';
 import { PrimaryButton } from '../../atoms/button/PrimaryButton';
+import uuid from 'react-uuid';
+import { useNoteContext } from '../../../providers/NoteContext';
 
 export const Sidebar = memo(() => {
   // props
   // Context
+  const { notes, setNotes, activeNote, setActiveNote } = useNoteContext();
   // hooks
   // State
   // function
-  const data ={
-    title: 'タイトル',
-    content: 'ノートの内容',
-    date:'xx/xx/xx'
-  }
   const onClickAdd = () => {
-    console.log('Add!')
+    // console.log('Add!')
+    const newNote = {
+      id: uuid(),
+      title: '新しいノート',
+      content: '新しいノートの内容',
+      date: new Date().toLocaleDateString('ja-JP',{
+        year: 'numeric',
+        month: '2-digit',
+        date: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      })
+    }
+    // つまづいた箇所：notesは配列なのに、newNote追加で[]をつけずに、...notes, newNoteと書いていた
+    setNotes( [...notes, newNote] )
   };
+  const onClickActive = () => {
+    console.log('active!')
+    setActiveNote()
+    console.log(activeNote)
+  }
   return (
     <>
       <div className="c-sidebar">
@@ -35,12 +53,11 @@ export const Sidebar = memo(() => {
           </div>
         </div>
         <ul className="c-sidebar_list">
-          {[...Array(4)].map((_, id)=>{
+          {notes.map((note)=>{
             return(
-              <li key={id} className="c-sidebar_listItem">
-                <NoteCard title={data.title} content={data.content} date={data.date}/>
+              <li key={note.id} className="c-sidebar_listItem" onClick={onClickActive}>
+                <NoteCard title={note.title} content={note.content} date={note.date}/>
               </li>
-
             )
           })}
         </ul>
