@@ -121,7 +121,7 @@
   margin-bottom: 16px; /* タイトルとリストの間の余白を統一 */
 }
 
-.c-hsidebar_headTitle h2 {
+.c-sidebar_headTitle h2 {
   font-size: 20px;
   margin: 0;
 }

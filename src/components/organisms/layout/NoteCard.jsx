@@ -13,7 +13,7 @@ export const NoteCard = memo((props) => {
   // props
   const { id, title, content, date } = props;
   // Context
-  const { notes, setNotes } = useNoteContext();
+  const { notes, setNotes, activeNote } = useNoteContext();
   // hooks
   // State
   // function
@@ -23,9 +23,10 @@ export const NoteCard = memo((props) => {
     const newNotes = notes.filter(note => note.id !== id);
     setNotes(newNotes);
   };
+
   return (
     <>
-      <div className="c-noteCard">
+      <div className={`c-noteCard ${ id === activeNote.id ? 'isActive' : null}`}>
         <div className="c-noteCard_title">
           <strong>{title}</strong>
           <PrimaryButton onClick={()=>onClickDelete(id)} text='削除'/>

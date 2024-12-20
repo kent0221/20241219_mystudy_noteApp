@@ -14,7 +14,7 @@ import { useNoteContext } from '../../../providers/NoteContext';
 export const Sidebar = memo(() => {
   // props
   // Context
-  const { notes, setNotes, activeNote, setActiveNote } = useNoteContext();
+  const { notes, setNotes, setActiveNote } = useNoteContext();
   // hooks
   // State
   // function
@@ -36,16 +36,17 @@ export const Sidebar = memo(() => {
     // つまづいた箇所：notesは配列なのに、newNote追加で[]をつけずに、...notes, newNoteと書いていた
     setNotes( [...notes, newNote] )
   };
-  const onClickActive = () => {
-    console.log('active!')
-    setActiveNote()
-    console.log(activeNote)
+  const onClickActive = (id) => {
+    // 選択されたノートをactiveNoteに保持
+    const selectedNote = notes.find(note => note.id === id);
+    console.log('selectedNote: ', selectedNote);
+    setActiveNote(selectedNote)
   }
   return (
     <>
       <div className="c-sidebar">
         <div className="c-sidebar_head">
-          <div className="c-hsidebar_headTitle">
+          <div className="c-sidebar_headTitle">
             <h2>ノート</h2>
           </div>
           <div className="c-sidebar_headButton">
@@ -55,7 +56,7 @@ export const Sidebar = memo(() => {
         <ul className="c-sidebar_list">
           {notes.map((note)=>{
             return(
-              <li key={note.id} className="c-sidebar_listItem" onClick={onClickActive}>
+              <li key={note.id} className="c-sidebar_listItem" onClick={()=>onClickActive(note.id)}>
                 <NoteCard id={note.id} title={note.title} content={note.content} date={note.date}/>
               </li>
             )
