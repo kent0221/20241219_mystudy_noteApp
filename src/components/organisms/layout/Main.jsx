@@ -2,7 +2,7 @@
 ** Main.jsx;
 */ 
 
-import { memo } from 'react';
+import { memo, useState } from 'react';
 // import PropTypes from 'prop-types';
 
 import './Layout.css';
@@ -14,20 +14,22 @@ export const Main = memo(() => {
   const { activeNote } = useNoteContext();
   // hooks
   // State
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   // function
 
-  const onChangeTitle = () => {
-    console.log('title')
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
   };
-  const onChangeContent = () => {
-    console.log('content')
+  const onChangeContent = (e) => {
+    setContent(e.target.value);
   };
   return (
     <>
       <div className="c-main">
         <div className="c-main_input">
-          <input onChange={onChangeTitle} type="text" name="title" id="title" placeholder='新しいノート' value=''/>
-          <textarea onChange={onChangeContent} name="content" id="content" placeholder='ノート内容を記入' value=''></textarea>
+          <input onChange={onChangeTitle} type="text" name="title" id="title" placeholder='新しいノート' value={title}/>
+          <textarea onChange={onChangeContent} name="content" id="content" placeholder='ノート内容を記入' value={content}></textarea>
         </div>
         <div className="c-main_preview">
           <div className="c-main_previewTitle">
