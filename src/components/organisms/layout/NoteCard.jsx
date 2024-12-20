@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import './Layout.css';
 import { PrimaryButton } from '../../atoms/button/PrimaryButton';
 import { useNoteContext } from '../../../providers/NoteContext';
+import { useStrage } from '../../../hooks/useStrage';
 
 export const NoteCard = memo((props) => {
   // props
@@ -15,6 +16,7 @@ export const NoteCard = memo((props) => {
   // Context
   const { notes, setNotes, activeNote } = useNoteContext();
   // hooks
+  const { setStrage } = useStrage();
   // State
   // function
   // つまづいた箇所：選択されたことをどのように判断するか
@@ -22,6 +24,7 @@ export const NoteCard = memo((props) => {
   const onClickDelete = (id) => {
     const newNotes = notes.filter(note => note.id !== id);
     setNotes(newNotes);
+    setStrage('notes', newNotes);
   };
 
   return (

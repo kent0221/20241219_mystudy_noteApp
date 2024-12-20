@@ -2,7 +2,7 @@
 ** Sidebar.jsx;
 */ 
 
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
 import './Layout.css';
@@ -10,14 +10,22 @@ import { NoteCard } from './NoteCard';
 import { PrimaryButton } from '../../atoms/button/PrimaryButton';
 import uuid from 'react-uuid';
 import { useNoteContext } from '../../../providers/NoteContext';
+import { useStrage } from '../../../hooks/useStrage';
 
 export const Sidebar = memo(() => {
   // props
   // Context
   const { notes, setNotes, setActiveNote } = useNoteContext();
   // hooks
+  const { getStrage, setStrage  } = useStrage();
   // State
   // function
+  useEffect(() => {
+    const data = getStrage('notes');
+    setNotes(data)
+  }, [getStrage, setNotes])
+  
+  
   const onClickAdd = () => {
     // console.log('Add!')
     const newNote = {
@@ -33,9 +41,10 @@ export const Sidebar = memo(() => {
         second: '2-digit',
       }),
       dateNum: new Date()
-    }
+    };
     // つまづいた箇所：notesは配列なのに、newNote追加で[]をつけずに、...notes, newNoteと書いていた
-    setNotes( [...notes, newNote] )
+    setNotes( [...notes, newNote] );
+    setStrage('notes', [...notes, newNote]);
   };
   const onClickActive = (id) => {
     // 選択されたノートをactiveNoteに保持

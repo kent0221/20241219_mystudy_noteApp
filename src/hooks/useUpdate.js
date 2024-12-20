@@ -4,10 +4,13 @@
 import { useCallback } from 'react';
 
 import { useNoteContext } from '../providers/NoteContext';
+import { useStrage } from './useStrage';
 
 export const useUpdate = () => {
   // Context
   const { notes, setNotes, activeNote, setActiveNote } = useNoteContext();
+  // hooks
+  const { setStrage } = useStrage();
   // State
   // function
   const onUpdateNotes = useCallback((e,key) =>{
@@ -30,10 +33,9 @@ export const useUpdate = () => {
     // notesの配列を修正日が新しい順に変更して反映させる
     const sortedNotes = updateNotes.sort((a, b) => b.dateNum - a.dateNum );
     setNotes(sortedNotes);
-    console.log('updateNotes', updateNotes)
-    console.log('sortedNotes', sortedNotes)
-
-
-  },[activeNote, notes, setActiveNote, setNotes])
+    // ローカルストレージへ保存
+    setStrage('notes', sortedNotes);
+  },[activeNote, notes, setActiveNote, setNotes, setStrage])
+  
   return { onUpdateNotes }
 };
