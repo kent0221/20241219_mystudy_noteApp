@@ -8,6 +8,7 @@ import { memo } from 'react';
 import './Layout.css';
 import { useNoteContext } from '../../../providers/NoteContext';
 import { useUpdate } from '../../../hooks/useUpdate';
+import Markdown from 'react-markdown';
 
 export const Main = memo(() => {
   // props
@@ -35,7 +36,7 @@ export const Main = memo(() => {
             <small>最終編集日：{activeNote.date}</small>
           </div>
           <div className="c-main_previewContent">
-            <p>{activeNote.content}</p>
+            <Markdown>{activeNote.content}</Markdown>
           </div>
         </div>
       </div>
