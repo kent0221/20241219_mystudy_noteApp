@@ -2,34 +2,32 @@
 ** Main.jsx;
 */ 
 
-import { memo, useState } from 'react';
+import { memo } from 'react';
 // import PropTypes from 'prop-types';
 
 import './Layout.css';
 import { useNoteContext } from '../../../providers/NoteContext';
+import { useUpdate } from '../../../hooks/useUpdate';
 
 export const Main = memo(() => {
   // props
   // Context
   const { activeNote } = useNoteContext();
   // hooks
+  const { onUpdateNotes } = useUpdate();
   // State
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
   // function
-
-  const onChangeTitle = (e) => {
-    setTitle(e.target.value);
-  };
-  const onChangeContent = (e) => {
-    setContent(e.target.value);
-  };
+  const onChangeTitle = (e) => onUpdateNotes(e, 'title');
+  const onChangeContent = (e) => onUpdateNotes(e, 'content');
   return (
     <>
+    {!activeNote ? (
+      <p>ノートが選択されていない</p>
+    ) : (
       <div className="c-main">
         <div className="c-main_input">
-          <input onChange={onChangeTitle} type="text" name="title" id="title" placeholder='新しいノート' value={title}/>
-          <textarea onChange={onChangeContent} name="content" id="content" placeholder='ノート内容を記入' value={content}></textarea>
+          <input onChange={onChangeTitle} type="text" name="title" id="title" placeholder='新しいノート' value={activeNote?.title??''}/>
+          <textarea onChange={onChangeContent} name="content" id="content" placeholder='ノート内容を記入' value={activeNote?.content??''}></textarea>
         </div>
         <div className="c-main_preview">
           <div className="c-main_previewTitle">
@@ -41,6 +39,7 @@ export const Main = memo(() => {
           </div>
         </div>
       </div>
+    )}
     </>
   );
 });
