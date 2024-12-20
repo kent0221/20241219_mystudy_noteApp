@@ -56,7 +56,7 @@ export const Sidebar = memo(() => {
           {notes.map((note)=>{
             return(
               <li key={note.id} className="c-sidebar_listItem" onClick={onClickActive}>
-                <NoteCard title={note.title} content={note.content} date={note.date}/>
+                <NoteCard id={note.id} title={note.title} content={note.content} date={note.date}/>
               </li>
             )
           })}

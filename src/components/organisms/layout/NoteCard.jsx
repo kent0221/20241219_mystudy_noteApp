@@ -7,23 +7,26 @@ import PropTypes from 'prop-types';
 
 import './Layout.css';
 import { PrimaryButton } from '../../atoms/button/PrimaryButton';
+import { useNoteContext } from '../../../providers/NoteContext';
 
 export const NoteCard = memo((props) => {
   // props
-  const { title, content, date } = props;
+  const { id, title, content, date } = props;
   // Context
+  const { notes, setNotes } = useNoteContext();
   // hooks
   // State
   // function
-  const onClickDelete = () => {
-    console.log('delete!')
+  const onClickDelete = (id) => {
+    const newNotes = notes.filter(note => note.id !== id);
+    setNotes(newNotes);
   };
   return (
     <>
       <div className="c-noteCard">
         <div className="c-noteCard_title">
           <strong>{title}</strong>
-          <PrimaryButton onClick={onClickDelete} text='削除'/>
+          <PrimaryButton onClick={()=>onClickDelete(id)} text='削除'/>
         </div>
         <div className="c-noteCard_content">
           <p>{content}</p>
@@ -35,6 +38,7 @@ export const NoteCard = memo((props) => {
 });
 NoteCard.displayName = 'NoteCard';
 NoteCard.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   content: PropTypes.string,
   date: PropTypes.string,
