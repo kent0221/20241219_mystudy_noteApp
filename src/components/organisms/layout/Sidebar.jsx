@@ -22,8 +22,13 @@ export const Sidebar = memo(() => {
   // function
   useEffect(() => {
     const data = getStrage('notes');
-    setNotes(data)
-  }, [getStrage, setNotes])
+    if(!data){
+      return
+    }else{
+      setNotes(data);
+      setActiveNote(data[0]);
+    }
+  }, [getStrage, setActiveNote, setNotes])
   
   
   const onClickAdd = () => {
@@ -63,13 +68,16 @@ export const Sidebar = memo(() => {
           </div>
         </div>
         <ul className="c-sidebar_list">
-          {notes.map((note)=>{
-            return(
-              <li key={note.id} className="c-sidebar_listItem" onClick={()=>onClickActive(note.id)}>
-                <NoteCard id={note.id} title={note.title} content={note.content} date={note.date}/>
-              </li>
-            )
-          })}
+          {!notes ? (null) : (
+            notes.map((note)=>{
+              return(
+                <li key={note.id} className="c-sidebar_listItem" onClick={()=>onClickActive(note.id)}>
+                  <NoteCard id={note.id} title={note.title} content={note.content} date={note.date}/>
+                </li>
+              )
+            })
+          )
+          }
         </ul>
       </div>
     </>

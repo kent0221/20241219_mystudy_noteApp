@@ -29,7 +29,7 @@ export const NoteCard = memo((props) => {
 
   return (
     <>
-      <div className={`c-noteCard ${ id === activeNote.id ? 'isActive' : null}`}>
+      <div className={`c-noteCard ${ activeNote && (id === activeNote.id) ? 'isActive' : null}`}>
         <div className="c-noteCard_title">
           <strong>{title}</strong>
           <PrimaryButton onClick={()=>onClickDelete(id)} text='削除'/>

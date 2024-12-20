@@ -17,5 +17,8 @@ export const useStrage = () => {
     const jsonData = JSON.stringify(data);
     localStorage.setItem([key], jsonData);
   },[])
-  return { setStrage, getStrage }
+  const clearStrage = useCallback((key) =>{
+    localStorage.clear([key]);
+  },[])
+  return { setStrage, getStrage, clearStrage }
 };
