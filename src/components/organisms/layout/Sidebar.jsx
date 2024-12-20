@@ -31,7 +31,8 @@ export const Sidebar = memo(() => {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-      })
+      }),
+      dateNum: new Date()
     }
     // つまづいた箇所：notesは配列なのに、newNote追加で[]をつけずに、...notes, newNoteと書いていた
     setNotes( [...notes, newNote] )
