@@ -17,6 +17,8 @@ export const NoteCard = memo((props) => {
   // hooks
   // State
   // function
+  // つまづいた箇所：選択されたことをどのように判断するか
+  // → NoteCardにidを渡して、idを引数に削除機能を実装した
   const onClickDelete = (id) => {
     const newNotes = notes.filter(note => note.id !== id);
     setNotes(newNotes);
