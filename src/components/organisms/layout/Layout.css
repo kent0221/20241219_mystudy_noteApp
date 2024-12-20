@@ -93,15 +93,22 @@
   padding: 16px 32px 16px 16px;
   flex: 6; /* 比率6 */
 }
+.c-main_preview{
+  margin-bottom: 8px; /* タイトルと内容の間の余白 */
+}
 
 .c-main_previewTitle strong {
   font-size: 20px;
   display: block;
-  margin-bottom: 8px; /* タイトルと内容の間の余白 */
+}
+
+.c-main_previewTitle small {
+  font-size: 12px;
+  color: #666666; /* 編集日を少し淡いグレーに */
 }
 
 .c-main_previewContent p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5; /* テキストの読みやすさを向上 */
 }
 

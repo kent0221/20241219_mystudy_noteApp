@@ -39,7 +39,6 @@ export const Sidebar = memo(() => {
   const onClickActive = (id) => {
     // 選択されたノートをactiveNoteに保持
     const selectedNote = notes.find(note => note.id === id);
-    console.log('selectedNote: ', selectedNote);
     setActiveNote(selectedNote)
   }
   return (

@@ -6,17 +6,15 @@ import { memo } from 'react';
 // import PropTypes from 'prop-types';
 
 import './Layout.css';
+import { useNoteContext } from '../../../providers/NoteContext';
 
 export const Main = memo(() => {
   // props
   // Context
+  const { activeNote } = useNoteContext();
   // hooks
   // State
   // function
-  const data = {
-    title: 'プレビューのタイトル',
-    content: 'プレビューのノート内容'
-  };
 
   const onChangeTitle = () => {
     console.log('title')
@@ -33,10 +31,11 @@ export const Main = memo(() => {
         </div>
         <div className="c-main_preview">
           <div className="c-main_previewTitle">
-            <strong>{data.title}</strong>
+            <strong>{activeNote.title}</strong>
+            <small>最終編集日：{activeNote.date}</small>
           </div>
           <div className="c-main_previewContent">
-            <p>{data.contetn}</p>
+            <p>{activeNote.content}</p>
           </div>
         </div>
       </div>
