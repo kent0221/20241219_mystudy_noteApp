@@ -1,22 +1,18 @@
 /* 
 ** Main.jsx;
 */ 
-
 import { memo } from 'react';
-// import PropTypes from 'prop-types';
+import Markdown from 'react-markdown';
 
 import './Layout.css';
 import { useNoteContext } from '../../../providers/NoteContext';
 import { useUpdate } from '../../../hooks/useUpdate';
-import Markdown from 'react-markdown';
 
 export const Main = memo(() => {
-  // props
   // Context
   const { activeNote } = useNoteContext();
   // hooks
   const { onUpdateNotes } = useUpdate();
-  // State
   // function
   const onChangeTitle = (e) => onUpdateNotes(e, 'title');
   const onChangeContent = (e) => onUpdateNotes(e, 'content');
@@ -45,4 +41,3 @@ export const Main = memo(() => {
   );
 });
 Main.displayName = 'Main';
-Main.propTypes = {};

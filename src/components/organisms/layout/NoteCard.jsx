@@ -1,7 +1,6 @@
 /* 
 ** NoteCard.jsx;
 */ 
-
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,7 +16,6 @@ export const NoteCard = memo((props) => {
   const { notes, setNotes, activeNote } = useNoteContext();
   // hooks
   const { setStrage } = useStrage();
-  // State
   // function
   // つまづいた箇所：選択されたことをどのように判断するか
   // → NoteCardにidを渡して、idを引数に削除機能を実装した

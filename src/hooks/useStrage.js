@@ -4,9 +4,6 @@
 import { useCallback } from 'react';
 
 export const useStrage = () => {
-  // Context
-  // hooks
-  // State
   // function
   const getStrage = useCallback((key) =>{
     const jsonData = localStorage.getItem([key]);

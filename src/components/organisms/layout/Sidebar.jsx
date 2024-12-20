@@ -1,24 +1,21 @@
 /* 
 ** Sidebar.jsx;
 */ 
-
 import { memo, useEffect } from 'react';
-// import PropTypes from 'prop-types';
 
 import './Layout.css';
 import { NoteCard } from './NoteCard';
 import { PrimaryButton } from '../../atoms/button/PrimaryButton';
-import uuid from 'react-uuid';
 import { useNoteContext } from '../../../providers/NoteContext';
 import { useStrage } from '../../../hooks/useStrage';
+import { useUpdate } from '../../../hooks/useUpdate';
 
 export const Sidebar = memo(() => {
-  // props
   // Context
   const { notes, setNotes, setActiveNote } = useNoteContext();
   // hooks
-  const { getStrage, setStrage  } = useStrage();
-  // State
+  const { getStrage } = useStrage();
+  const { addNote } = useUpdate();
   // function
   useEffect(() => {
     const data = getStrage('notes');
@@ -29,28 +26,7 @@ export const Sidebar = memo(() => {
       setActiveNote(data[0]);
     }
   }, [getStrage, setActiveNote, setNotes])
-  
-  
-  const onClickAdd = () => {
-    // console.log('Add!')
-    const newNote = {
-      id: uuid(),
-      title: '新しいノート',
-      content: '新しいノートの内容',
-      date: new Date().toLocaleDateString('ja-JP',{
-        year: 'numeric',
-        month: '2-digit',
-        date: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      }),
-      dateNum: new Date()
-    };
-    // つまづいた箇所：notesは配列なのに、newNote追加で[]をつけずに、...notes, newNoteと書いていた
-    setNotes( [...notes, newNote] );
-    setStrage('notes', [...notes, newNote]);
-  };
+  const onClickAdd = () => addNote();
   const onClickActive = (id) => {
     // 選択されたノートをactiveNoteに保持
     const selectedNote = notes.find(note => note.id === id);
@@ -69,19 +45,17 @@ export const Sidebar = memo(() => {
         </div>
         <ul className="c-sidebar_list">
           {!notes ? (null) : (
-            notes.map((note)=>{
-              return(
+            notes.map((note)=>
+              (
                 <li key={note.id} className="c-sidebar_listItem" onClick={()=>onClickActive(note.id)}>
                   <NoteCard id={note.id} title={note.title} content={note.content} date={note.date}/>
                 </li>
               )
-            })
-          )
-          }
+            )
+          )}
         </ul>
       </div>
     </>
   );
 });
 Sidebar.displayName = 'Sidebar';
-Sidebar.propTypes = {};

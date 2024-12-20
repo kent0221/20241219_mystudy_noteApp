@@ -3,6 +3,7 @@
  */
 import { useState } from "react";
 import PropTypes from "prop-types";
+
 import { NoteContext } from "./NoteContext";
 
 export const NoteProvider = (props) => {
@@ -10,8 +11,7 @@ export const NoteProvider = (props) => {
   const { children } = props;
   // State
   const [ notes, setNotes ] = useState([]);
-  const [activeNote, setActiveNote] = useState({})
-  // function
+  const [activeNote, setActiveNote] = useState({});
   
   return (
       <NoteContext.Provider value={{ notes, setNotes, activeNote, setActiveNote }}>

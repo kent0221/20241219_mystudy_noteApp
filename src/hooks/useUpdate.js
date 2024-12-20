@@ -5,24 +5,34 @@ import { useCallback } from 'react';
 
 import { useNoteContext } from '../providers/NoteContext';
 import { useStrage } from './useStrage';
+import uuid from 'react-uuid';
 
 export const useUpdate = () => {
   // Context
   const { notes, setNotes, activeNote, setActiveNote } = useNoteContext();
   // hooks
   const { setStrage } = useStrage();
-  // State
   // function
+  const modDate = new Date().toLocaleDateString('ja-JP',{
+    year: 'numeric',
+    month: '2-digit',
+    data: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+  const addNote = useCallback(() => {
+    const newNote = {
+      id: uuid(),
+      title: '新しいノート',
+      content: '新しいノートの内容',
+      date: modDate,
+      dateNum: new Date()
+    };
+    setNotes([...notes, newNote]);
+    setStrage('notes', [...notes, newNote]);
+  },[modDate, notes, setNotes, setStrage])
   const onUpdateNotes = useCallback((e,key) =>{
-    // 現在を編集日として定義
-    const modDate = new Date().toLocaleDateString('ja-JP',{
-      year: 'numeric',
-      month: '2-digit',
-      data: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    });
     // 編集した内容をactveNoteに保存する
     const updateNote = {...activeNote, [key]: e.target.value, date: modDate, dateNum: new Date()};
     setActiveNote(updateNote);
@@ -35,7 +45,7 @@ export const useUpdate = () => {
     setNotes(sortedNotes);
     // ローカルストレージへ保存
     setStrage('notes', sortedNotes);
-  },[activeNote, notes, setActiveNote, setNotes, setStrage])
+  },[activeNote, modDate, notes, setActiveNote, setNotes, setStrage])
   
-  return { onUpdateNotes }
+  return { onUpdateNotes, addNote }
 };

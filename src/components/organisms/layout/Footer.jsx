@@ -1,18 +1,11 @@
 /* 
 ** Footer.jsx;
 */ 
-
 import { memo } from 'react';
-// import PropTypes from 'prop-types';
 
 import './Layout.css';
 
 export const Footer = memo(() => {
-  // props
-  // Context
-  // hooks
-  // State
-  // function
   return (
     <>
       <footer className="c-footer">
@@ -24,4 +17,3 @@ export const Footer = memo(() => {
   );
 });
 Footer.displayName = 'Footer';
-Footer.propTypes = {};

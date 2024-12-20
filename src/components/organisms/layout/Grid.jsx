@@ -1,7 +1,6 @@
 /* 
 ** Grid.jsx;
 */ 
-
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 
@@ -10,10 +9,6 @@ import './Layout.css';
 export const Grid = memo((props) => {
   // props
   const { sidebar, main } = props;
-  // Context
-  // hooks
-  // State
-  // function
   return (
     <>
       <div className="c-grid">
